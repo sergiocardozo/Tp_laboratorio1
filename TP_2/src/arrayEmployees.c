@@ -81,7 +81,7 @@ int controllerGetEmployee(Employee* list, int len)
 		getValidString("\nIngrese Nombre: ","\nNo es un nombre valido","\nLongitud maxima 50", auxNombre,50,3);
 		getValidString("\nIngrese Apellido: ","\nNo es un apellido valido","\nLongitud maxima 50",auxApellido,50,3);
 		auxSalario = getValidFloat("\nIngrese nuevo salario: ", "\nError, ingrese solo numeros: ", 1, 10000000);
-		auxSector = getValidInt("\nIngrese nuevo sector: ", "\nError, ingrese solo numeros: ",&auxSector,1,1000,3);
+		auxSector = getValidIntA("\nIngrese nuevo sector: ", "\nError, ingrese solo numeros: ",1,1000);
 
 		addEmployee(list, len, espacioLibre, auxNombre, auxApellido, auxSalario, auxSector);
 	}
@@ -132,7 +132,7 @@ int modifyEmployee (Employee* list, int len)
                 list[findEmployee].salary = auxSalary;
                 break;
             case 4:
-                auxSector = getValidInt("\nIngrese nuevo sector: ", "\nError, ingrese solo numeros: ",&auxSector,1,1000,3);
+                auxSector = getValidIntA("\nIngrese nuevo sector: ", "\nError, ingrese solo numeros: ",1,1000);
                 list[findEmployee].sector = auxSector;
                 break;
             case 5:
@@ -213,7 +213,7 @@ int printEmployees (Employee* list, int len)
 
     if(len > 0)
     {
-        printf("ID\tNombre\t\tApellido\t\tSalario\t\tSector \n");
+        printf("ID\tNombre\t\tApellido\t\t\tSalario\t\tSector \n");
 
         for(i=0; i<len; i++)
         {

@@ -304,6 +304,29 @@ int getValidInt(char requestMessage[],char errorMessage[], int* input,int lowLim
 
 }
 
+int getValidIntA(char requestMessage[],char errorMessage[], int lowLimit, int hiLimit)
+{
+    char auxStr[256];
+
+    int auxInt;
+
+    while(1)
+    {
+        if (!getStringNumeros(requestMessage,auxStr))
+        {
+            printf ("%s\n",errorMessage);
+            continue;
+        }
+        auxInt = atoi(auxStr);
+        if(auxInt < lowLimit || auxInt > hiLimit)
+        {
+            printf ("El numero del debe ser mayor a %d y menor a %d\n",lowLimit,hiLimit);
+            continue;
+        }
+        return auxInt;
+    }
+}
+
 
 /**
  * \brief Solicita un string

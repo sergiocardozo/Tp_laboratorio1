@@ -344,9 +344,10 @@ void informesEmployees(Employee* list, int len)
 			averageEmployeesSalary (list, len);
 			break;
 		case 3:
+			printf("\n Saliendo de modificaciones");
 			break;
 		default:
-			printf("\n Saliendo de informes");
+			printf("\n Ingrese una opcion de 1 a 3 ");
 		}
 	}while(opcionInf != 3);
 

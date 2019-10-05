@@ -9,6 +9,7 @@
  */
 
 #include <stdio.h>
+#include <stdio_ext.h>
 #include <stdlib.h>
 #include "utn.h"
 #include "arrayEmployees.h"
@@ -22,6 +23,8 @@ int main()
 	//Se crea el array de empleados y se inicializa
     Employee eEmpleados[QTY_EMPLOYEE];
     initEmployees(eEmpleados,QTY_EMPLOYEE);
+
+    // Valores harcodeados para el programa para verificar su funcionamiento
 
     /* addEmployee(eEmpleados,QTY_EMPLOYEE,0,"SERGIO","CARDOZO",25000,2);
     addEmployee(eEmpleados,QTY_EMPLOYEE,1,"VIVIANA","JUAREZ",40000,3);
@@ -37,6 +40,8 @@ int main()
                         \n3-BAJA\
                         \n4-INFORMES\
             		     \n5-SALIR\n");
+
+        __fpurge(stdin);
         getValidInt("\nSelecione una opcion: ","\nOpcion invalida",&opcion,1,5,10);
 
         switch(opcion)
@@ -88,6 +93,8 @@ int main()
             pause();
             break;
         }
+        system("clear");
+        pause();
 
     }while(opcion != 5);
 

@@ -80,8 +80,8 @@ int controllerGetEmployee(Employee* list, int len)
 	{
 		getValidString("\nIngrese Nombre: ","\nNo es un nombre valido","\nLongitud maxima 50", auxNombre,50,3);
 		getValidString("\nIngrese Apellido: ","\nNo es un apellido valido","\nLongitud maxima 50",auxApellido,50,3);
-		auxSalario = getValidFloat("Ingrese nuevo salario: ", "Error, ingrese solo numeros: ", 1, 10000000);
-		auxSector = getValidInt("Ingrese nuevo sector: ", "Error, ingrese solo numeros: ",&auxSector,1,1000,3);
+		auxSalario = getValidFloat("\nIngrese nuevo salario: ", "\nError, ingrese solo numeros: ", 1, 10000000);
+		auxSector = getValidInt("\nIngrese nuevo sector: ", "\nError, ingrese solo numeros: ",&auxSector,1,1000,3);
 
 		addEmployee(list, len, espacioLibre, auxNombre, auxApellido, auxSalario, auxSector);
 	}
@@ -112,7 +112,7 @@ int modifyEmployee (Employee* list, int len)
     {
         do
         {
-            printf("\n-------------------- \n");
+            printf("\n---------------------------------------- \n");
             printf("1- Nombre \n2- Apellido \n3- Salario \n4- Sector \n5- Salir de modificaciones  \n");
             printf("------------------------------------------ \n");
             scanf("%d", &modify);
@@ -128,11 +128,11 @@ int modifyEmployee (Employee* list, int len)
                 strcpy(list[findEmployee].lastName, auxLastName);
                 break;
             case 3:
-                auxSalary = getValidFloat("Ingrese nuevo salario: ", "Error, ingrese solo numeros: ", 0, 10000000);
+                auxSalary = getValidFloat("\nIngrese nuevo salario: ", "\nError, ingrese solo numeros: ", 0, 10000000);
                 list[findEmployee].salary = auxSalary;
                 break;
             case 4:
-                auxSector = getValidInt("Ingrese nuevo sector: ", "Error, ingrese solo numeros: ",&auxSector,1,1000,3);
+                auxSector = getValidInt("\nIngrese nuevo sector: ", "\nError, ingrese solo numeros: ",&auxSector,1,1000,3);
                 list[findEmployee].sector = auxSector;
                 break;
             case 5:

@@ -93,8 +93,7 @@ int main()
             pause();
             break;
         }
-        system("clear");
-        pause();
+
 
     }while(opcion != 5);
 

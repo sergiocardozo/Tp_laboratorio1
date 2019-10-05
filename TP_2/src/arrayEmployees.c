@@ -213,14 +213,14 @@ int printEmployees (Employee* list, int len)
 
     if(len > 0)
     {
-        printf("ID\tNombre\t\tApellido\t\t\tSalario\t\tSector \n");
+        printf("ID\tNombre\t\tApellido\t\tSalario\t\tSector \n");
 
         for(i=0; i<len; i++)
         {
             if (list[i].isEmpty == 1)
             {
 
-                printf("%d\t%s\t\t%s\t\t%.2f\t\t%d \n", list[i].id, list[i].name, list[i].lastName, list[i].salary, list[i].sector);
+                printf("%d\t%s\t\t%s\t\t\t%.2f\t\t%d \n", list[i].id, list[i].name, list[i].lastName, list[i].salary, list[i].sector);
             }
         }
         ret = 0;

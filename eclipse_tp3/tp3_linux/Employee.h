@@ -32,8 +32,7 @@ int employee_setSueldoStr(Employee* this,char* sueldo);
 int employee_getSueldo(Employee* this,int* sueldo);
 
 int employee_findEmployeeById(LinkedList* pArrayListEmployee, int id);
-int employee_comparaPorNombre(void *this,void *that);
+int employee_sort(void* pEmployee1, void* pEmployee2);
 
-int controller_PrintEmployee(LinkedList* pArrayListEmployee, int index);
 
 #endif // employee_H_INCLUDED

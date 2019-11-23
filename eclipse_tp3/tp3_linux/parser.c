@@ -12,31 +12,43 @@
  */
 int parser_EmployeeFromText(FILE* pFile , LinkedList* pArrayListEmployee)
 {
+	Employee *pEmpleado;
+
 	int retorno= 0;
+	int cantidadDatos;
 	char bufferId[4096];
 	char bufferNombre[4096];
 	char bufferHorasTrabajadas[4096];
 	char bufferSueldo[4096];
-	Employee *pEmpleado;
+
 
 	if(pFile!=NULL && pArrayListEmployee!=NULL)
 	{
-		fscanf(pFile,"[^\n]\n");
+		fscanf(pFile,"%[^,],%[^,],%[^,],%[^\n]\n",bufferId,
+												bufferNombre,
+												bufferHorasTrabajadas,
+												bufferSueldo);
 		while(!feof(pFile))
 		{
-			fscanf(pFile,"%[^,],%[^,],%[^,],%[^\n]\n",  bufferId,
-					bufferNombre,
-					bufferHorasTrabajadas,
-					bufferSueldo);
+			cantidadDatos = fscanf(pFile,"%[^,],%[^,],%[^,],%[^\n]\n",bufferId,
+																	bufferNombre,
+																	bufferHorasTrabajadas,
+																	bufferSueldo);
 
-			pEmpleado = employee_newParametros(bufferId,bufferNombre,bufferHorasTrabajadas,bufferSueldo);
-
-			if(pEmpleado != NULL)
+			if(cantidadDatos == 4)
 			{
-				if(!ll_add(pArrayListEmployee,pEmpleado))
-				{
-					retorno++;
-				}
+				  pEmpleado = employee_newParametros(bufferId,
+						  	  	  	  	  	  	  	  bufferNombre,
+													  bufferHorasTrabajadas,
+													  bufferSueldo);
+
+				  if(pEmpleado != NULL)
+				  {
+					  if(!ll_add(pArrayListEmployee,pEmpleado))
+					  {
+						  retorno = 0;
+					  }
+				  }
 			}
 		}
 	}
@@ -52,28 +64,33 @@ int parser_EmployeeFromText(FILE* pFile , LinkedList* pArrayListEmployee)
  */
 int parser_EmployeeFromBinary(FILE* pFile , LinkedList* pArrayListEmployee)
 {
-	int retorno = 0;
-    Employee* pEmployee;
+	 int retorno = 1;
+	 Employee* pEmpleado;
+	 int cantidadDatos;
 
-    if(pFile != NULL && pArrayListEmployee != NULL)
-    {
-        do{
-            //generar espacio en memoria
-            pEmployee = employee_new();
-            // guardarlo en el archivo
-            if(fread(pEmployee, sizeof(Employee), 1, pFile))
-            {
-                // agregarlo a la linkedlist
-                if(!ll_add(pArrayListEmployee, pEmployee))
-                {
-                	retorno++;
-                }
-            }
-            else
-            {
-                employee_delete(pEmployee);
-            }
-        }while(!feof(pFile));
-    }
-    return retorno;
+	 if(pFile != NULL && pArrayListEmployee != NULL)
+	 {
+		 while(!feof(pFile))
+		 {
+			 pEmpleado = employee_new();
+
+			 if(pEmpleado != NULL)
+			 {
+				 cantidadDatos = fread(pEmpleado, sizeof(Employee), 1, pFile);
+			 }
+
+			 if(cantidadDatos == 1)
+			 {
+				 if(!ll_add(pArrayListEmployee, pEmpleado))
+				 {
+					 retorno = 0;
+				 }
+			 }
+			 else
+			 {
+				 employee_delete(pEmpleado); // si no obtengo la línea de datos que esperaba, borro el espacio que separé
+			 }
+		 }
+	 }
+	 return retorno;
 }

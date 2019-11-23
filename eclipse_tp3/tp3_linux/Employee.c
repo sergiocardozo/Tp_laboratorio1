@@ -201,20 +201,28 @@ int employee_findEmployeeById(LinkedList* pArrayListEmployee, int id)
     return ret;
 }
 
-int employee_comparaPorNombre(void *pPersonaA,void *pPersonaB)
+int employee_sort(void* pEmployee1, void* pEmployee2)
 {
-    int retorno = 0;
+	int retorno;
+	int strcmp_r; // para guardar el retorno de strcmp
+	Employee* pEmpleado1 = (Employee*) pEmployee1;
+	Employee* pEmpleado2 = (Employee*) pEmployee2;
 
-    if(strcmp(((Employee*)pPersonaA)->nombre,((Employee*)pPersonaB)->nombre) > 0)
-    {
-    	retorno = 1;
-    }
-    if(strcmp(((Employee*)pPersonaA)->nombre,((Employee*)pPersonaB)->nombre) < 0)
-    {
-    	retorno = -1;
-    }
+	strcmp_r = strcmp(pEmpleado1->nombre, pEmpleado2->nombre);
 
-    return retorno;
+	if(strcmp_r > 0)
+	{
+		retorno = 1;
+	}
+	else if(strcmp_r < 0)
+	{
+		retorno = -1;
+	}
+	else
+	{
+		retorno = 0;
+	}
+	return retorno;
 }
 
 
